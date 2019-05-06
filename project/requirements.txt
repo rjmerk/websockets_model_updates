@@ -1,2 +1,6 @@
 django==2.2.1
 psycopg2>=2.7,<3.0
+pytest-django==3.4.8 # Unit testing framework https://pytest-django.readthedocs.io/
+pytest-cov==2.6.1 # Unit testing coverage https://pytest-cov.readthedocs.io/
+model_mommy==1.6.0 # Smart fixtures factory for unit testing https://model-mommy.readthedocs.io/
+channels==2.2.0 # Websockets and other async protocols  https://channels.readthedocs.io/

@@ -11,10 +11,10 @@ window.addEventListener('load', function() {
     };
 
     socket.onmessage = function(e) {
-        var data = JSON.parse(e.data);
-        var message = data['message'];
-        console.log("The server send us the following message: ");
-        console.log(message);
+        var message = JSON.parse(e.data);
+        console.log("The server send us the following appointment: ");
+        console.log(message['appointment_date']);
+        console.log(message['description']);
     };
 
 });

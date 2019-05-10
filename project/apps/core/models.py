@@ -21,6 +21,7 @@ class Appointment(models.Model):
             settings.MAIN_CHANNEL,
             {
                 "type": "appointment_update",
+                "appointment_id": self.pk,
                 "appointment_date": self.appointment_date.isoformat(),
                 "user_id": self.user_id,
                 "description": self.description

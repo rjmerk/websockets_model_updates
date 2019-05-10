@@ -8,7 +8,7 @@ class AppointmentConsumer(WebsocketConsumer):
 
     def connect(self):
         user = self.scope["user"]
-        if user.is_authenticated or True:
+        if user.is_authenticated:
             self.accept()
             async_to_sync(self.channel_layer.group_add)(
                 settings.MAIN_CHANNEL,
@@ -23,16 +23,14 @@ class AppointmentConsumer(WebsocketConsumer):
 
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message = text_data_json["message"]
-        self.send(text_data=json.dumps({
-            "message": "Welcome! you said {}".format(message)
-        }))
+        self.min_date = text_data_json.get("min_date")
 
     def appointment_update(self, event):
         if(event["user_id"] != self.scope["user"].pk):
             return
 
         self.send(text_data=json.dumps({
+            "appointment_id": event["appointment_id"],
             "appointment_date": event["appointment_date"],
             "description": event["description"]
         }))
